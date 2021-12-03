@@ -1,12 +1,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var num1: Int
-    @State private var num2: Int
-    @State private var num3: Int
-    @State private var num4: Int
-    @State private var num5: Int
-    @State private var ans: Int
+    @State private var num1: Int?
+    @State private var num2: Int?
+    @State private var num3: Int?
+    @State private var num4: Int?
+    @State private var num5: Int?
+    @State private var ans: Int = 0
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -30,13 +30,17 @@ struct ContentView: View {
                     .frame(width: 150, height: 50)
                     .border(.secondary)
                     .padding(.leading)
-                Button("Button", action: {ans = num1 + num2})
+                Button("Button", action: {ans = num1 ?? 0
+                    ans += num2 ?? 0
+                    ans += num3 ?? 0
+                    ans += num4 ?? 0
+                    ans += num5 ?? 0
+                })
                     .padding(.leading)
-                Text("1")
+                Text(ans, format: .number)
                     .padding([.top, .leading])
                 Spacer()
             }
-            .textFieldStyle(.roundedBorder)
             Spacer()
         }
     }
